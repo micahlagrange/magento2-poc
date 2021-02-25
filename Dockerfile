@@ -7,7 +7,6 @@ COPY patches /app/patches
 
 RUN composer install --no-dev
 
-COPY package*.json /app/
 COPY . /app/
 
 RUN chmod +x bin/magento
@@ -19,9 +18,6 @@ FROM 875988342918.dkr.ecr.us-east-1.amazonaws.com/webscale-php-fpm:php-7.4
 
 WORKDIR /var/www/html
 ENV MAGE_MODE=production
-
-COPY --chown=33:33 --from=compiled $PHP_INI_DIR/conf.d/99-webscale.ini $PHP_INI_DIR/conf.d/
-COPY --chown=33:33 --from=compiled /usr/local/etc/php-fpm.d/www.conf /usr/local/etc/php-fpm.d/www.conf
 
 COPY --chown=33:33 --from=compiled /app/vendor /var/www/html/vendor
 COPY --chown=33:33 --from=compiled /app/generated /var/www/html/generated
