@@ -1,0 +1,40 @@
+version: 0.2
+env:
+  shell: bash
+phases:
+  install:
+    runtime-versions:
+      php: 7.4
+  build:
+    commands:
+      - customer_repo="875988342918.dkr.ecr.us-east-1.amazonaws.com/webscale-inttest-dockerbuild"
+      - date=`date +%Y%m%d-%H%M%S`
+      - latesttag=webscale-magento2-poc-${date}
+      - mkdir -p /var/webscale/
+      - echo $latesttag > /var/webscale/tags
+      - echo log into php repo
+      - cd $CODEBUILD_SRC_DIR
+      - mkdir -p ./config
+      - secrets_location="s3://webscale-inttest-dockerbuild-secrets/"
+      - aws s3 cp ${secrets_location}auth.json ./auth.json
+      - echo "ENV"
+      - echo REGION=us-east-1
+      - echo ACCOUNT=875988342918
+      - echo DOCKER_TAG=${latesttag}
+      - echo Build started on `date`
+      - echo Building the Docker image ...
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 875988342918.dkr.ecr.us-east-1.amazonaws.com/webscale-php-fpm
+      - docker build -f Dockerfile -t ${latesttag} .
+      - echo success > /var/webscale/ok
+
+  post_build:
+    commands:
+      - if ! grep -qs success /var/webscale/ok; then exit 1; fi
+      - customer_repo="875988342918.dkr.ecr.us-east-1.amazonaws.com/webscale-inttest-dockerbuild"
+      - latestfulltag="${customer_repo}:$(cat /var/webscale/latesttag)"
+      - echo Build completed on `date`
+      - echo
+      - echo Pushing the docker images...
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${customer_repo}
+      - docker push ${latestfulltag}
+
