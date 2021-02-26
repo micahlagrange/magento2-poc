@@ -11,7 +11,7 @@ phases:
       - date=`date +%Y%m%d-%H%M%S`
       - latesttag=webscale-magento2-poc-${date}
       - mkdir -p /var/webscale/
-      - echo $latesttag > /var/webscale/tags
+      - echo $latesttag > /var/webscale/latesttag
       - echo log into php repo
       - cd $CODEBUILD_SRC_DIR
       - mkdir -p ./config
