@@ -75,7 +75,7 @@ Main parameters:
 | apiPoolUsers                                  | 0                   | Total number of API threads.                                                             |
 | oneThreadScenariosPoolUsers                   | 0                   | Total number of One Thread Scenarios threads.                                            |
 | graphQLPoolUsers                              | 0                   | Total number of GraphQL threads.                                                         |
-| combinedBenchmarkPoolUsers                    | 0                   | Total number of Combined Benchmark threads.                                              |
+| cBenchmarkPoolUsers                           | 0                   | Total number of Combined Benchmark threads.                                              |
 
 Parameters for Frontend pool:
 
@@ -145,6 +145,7 @@ Parameters for GraphQL pool:
 | graphqlGetProductSearchByTextAndCategoryIdPercentage              |  0                  | Percentage of threads in GraphQL Pool that emulate GraphQL requests activities.           |
 | graphqlGetCategoryListByCategoryIdPercentage                      |  0                  | Percentage of threads in GraphQL Pool that emulate GraphQL requests activities.           |
 | graphqlUrlInfoByUrlKeyPercentage                                  |  0                  | Percentage of threads in GraphQL Pool that emulate GraphQL requests activities.           |
+| graphqlGetCmsBlockByIdentifierPercentage                          |  0                  | Percentage of threads in GraphQL Pool that emulate GraphQL requests activities.           |
 | graphqlGetCmsPageByIdPercentage                                   |  0                  | Percentage of threads in GraphQL Pool that emulate GraphQL requests activities.           |
 | graphqlGetNavigationMenuByCategoryIdPercentage                    |  0                  | Percentage of threads in GraphQL Pool that emulate GraphQL requests activities.           |
 | graphqlCreateEmptyCartPercentage                                  |  0                  | Percentage of threads in GraphQL Pool that emulate GraphQL requests activities.           |
@@ -164,28 +165,28 @@ Parameters for GraphQL pool:
 
 Parameters for Combined Benchmark pool:
 
-| Parameter Name                                                    | Default Value       | Description                                                                                          |
-| ----------------------------------------------------------------- | ------------------- | ---------------------------------------------------------------------------------------------------- |
-| cBrowseCatalogByGuestPercentage                                   |  29                 | Percentage of threads in Combined Benchmark Pool that emulate customer catalog browsing activities.  |
-| cSiteSearchPercentage                                             |  29                 | Percentage of threads in Combined Benchmark Pool that emulate catalog search activities.             |
-| cAddToCartByGuestPercentage                                       |  26                 | Percentage of threads in Combined Benchmark Pool that emulate abandoned cart activities.             |
-| cAddToWishlistPercentage                                          |  1.5                | Percentage of threads in Combined Benchmark Pool that emulate adding products to Wishlist.           |
-| cCompareProductsPercentage                                        |  1.5                | Percentage of threads in Combined Benchmark Pool that emulate products comparison.                   |
-| cCheckoutByGuestPercentage                                        |  3.5                | Percentage of threads in Combined Benchmark Pool that emulate checkout by guest.                     |
-| cCheckoutByCustomerPercentage                                     |  3.5                | Percentage of threads in Combined Benchmark Pool that emulate checkout by customer.                  |
-| cAccountManagementPercentage                                      |  1                  | Percentage of threads in Combined Benchmark Pool that emulate account management.                    |
-| cAdminCMSManagementPercentage                                     |  0.35               | Percentage of threads in Combined Benchmark Pool that emulate CMS management activities.             |
-| cAdminBrowseProductGridPercentage                                 |  0.2                | Percentage of threads in Combined Benchmark Pool that emulate products grid browsing activities.     |
-| cAdminBrowseOrderGridPercentage                                   |  0.2                | Percentage of threads in Combined Benchmark Pool that emulate orders grid browsing activities.       |
-| cAdminProductCreationPercentage                                   |  0.5                | Percentage of threads in Combined Benchmark Pool that emulate product creation activities.           |
-| cAdminProductEditingPercentage                                    |  0.65               | Percentage of threads in Combined Benchmark Pool that emulate product editing activities.            |
-| cAdminReturnsManagementPercentage                                 |  0.75               | Percentage of threads in Combined Benchmark Pool that emulate admin returns management activities.   |
-| cAdminBrowseCustomerGridPercentage                                |  0.1                | Percentage of threads in Combined Benchmark Pool that emulate customers grid browsing activities.    |
-| cAdminCreateOrderPercentage                                       |  0.5                | Percentage of threads in Combined Benchmark Pool that emulate creating orders activities.            |
-| cAdminCategoryManagementPercentage                                |  0.15               | Percentage of threads in Combined Benchmark Pool that emulate admin category management activities.  |
-| cAdminPromotionRulesPercentage                                    |  0.2                | Percentage of threads in Combined Benchmark Pool that emulate admin promotion rules activities.      |
-| cAdminCustomerManagementPercentage                                |  0.4                | Percentage of threads in Combined Benchmark Pool that emulate admin customers management activities. |
-| cAdminEditOrderPercentage                                         |  1                  | Percentage of threads in Combined Benchmark Pool that emulate admin edit order activities.           |
+| Parameter Name                                                | Default Value       | Description                                                                                          |
+| ------------------------------------------------------------- | ------------------- | ---------------------------------------------------------------------------------------------------- |
+| cBrowseCatalogByGuestPercentage                               |  29                 | Percentage of threads in Combined Benchmark Pool that emulate customer catalog browsing activities.  |
+| cSiteSearchPercentage                                         |  29                 | Percentage of threads in Combined Benchmark Pool that emulate catalog search activities.             |
+| cAddToCartByGuestPercentage                                   |  26                 | Percentage of threads in Combined Benchmark Pool that emulate abandoned cart activities.             |
+| cAddToWishlistPercentage                                      |  1.5                | Percentage of threads in Combined Benchmark Pool that emulate adding products to Wishlist.           |
+| cCompareProductsPercentage                                    |  1.5                | Percentage of threads in Combined Benchmark Pool that emulate products comparison.                   |
+| cCheckoutByGuestPercentage                                    |  3.5                | Percentage of threads in Combined Benchmark Pool that emulate checkout by guest.                     |
+| cCheckoutByCustomerPercentage                                 |  3.5                | Percentage of threads in Combined Benchmark Pool that emulate checkout by customer.                  |
+| cAccountManagementPercentage                                  |  1                  | Percentage of threads in Combined Benchmark Pool that emulate account management.                    |
+| cAdminCMSManagementPercentage                                 |  0.35               | Percentage of threads in Combined Benchmark Pool that emulate CMS management activities.             |
+| cAdminBrowseProductGridPercentage                             |  0.2                | Percentage of threads in Combined Benchmark Pool that emulate products grid browsing activities.     |
+| cAdminBrowseOrderGridPercentage                               |  0.2                | Percentage of threads in Combined Benchmark Pool that emulate orders grid browsing activities.       |
+| cAdminProductCreationPercentage                               |  0.5                | Percentage of threads in Combined Benchmark Pool that emulate product creation activities.           |
+| cAdminProductEditingPercentage                                |  0.65               | Percentage of threads in Combined Benchmark Pool that emulate product editing activities.            |
+| cAdminReturnsManagementPercentage                             |  0.75               | Percentage of threads in Combined Benchmark Pool that emulate admin returns management activities.   |
+| cAdminBrowseCustomerGridPercentage                            |  0.1                | Percentage of threads in Combined Benchmark Pool that emulate customers grid browsing activities.    |
+| cAdminCreateOrderPercentage                                   |  0.5                | Percentage of threads in Combined Benchmark Pool that emulate creating orders activities.            |
+| cAdminCategoryManagementPercentage                            |  0.15               | Percentage of threads in Combined Benchmark Pool that emulate admin category management activities.  |
+| cAdminPromotionRulesPercentage                                |  0.2                | Percentage of threads in Combined Benchmark Pool that emulate admin promotion rules activities.      |
+| cAdminCustomerManagementPercentage                            |  0.4                | Percentage of threads in Combined Benchmark Pool that emulate admin customers management activities. |
+| cAdminEditOrderPercentage                                     |  1                  | Percentage of threads in Combined Benchmark Pool that emulate admin edit order activities.           |
 
 Parameters must be passed to the command line with the `J` prefix:
 
@@ -308,14 +309,6 @@ For more details, read [Summary Report](http://jmeter.apache.org/usermanual/comp
 - **Legacy Scenario**
 
 #### Legacy Threads
-
-The `benchmark_2015.jmx` script consists of five thread groups: the setup thread and four user threads.
-By default, the percentage ratio between the thread groups is as follows:
-
-- Browsing, adding items to the cart and abandon cart (BrowsAddToCart suffix in reports) - 62%
-- Just browsing (CatProdBrows suffix in reports) - 30%
-- Browsing, adding items to cart and checkout as guest (GuestChkt suffix in reports) -  4%
-- Browsing, adding items to cart and checkout as registered customer (CustomerChkt suffix in reports) - 4%
 
 The `benchmark_2015.jmx` script consists of five thread groups: the setup thread and four user threads.
 By default, the percentage ratio between the thread groups is as follows:
