@@ -24,7 +24,7 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image ...
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 875988342918.dkr.ecr.us-east-1.amazonaws.com/webscale-php-fpm
-      - docker build -f Dockerfile -t ${latesttag} .
+      - docker build -f Dockerfile -t ${customer_repo}:${latesttag} .
       - echo success > /var/webscale/ok
 
   post_build:

@@ -15,6 +15,7 @@ return [
         'Magento_AdobeStockImageApi' => 1,
         'Magento_AdvancedPricingImportExport' => 1,
         'Magento_Theme' => 1,
+        'Magento_ThemeSampleData' => 1,
         'Magento_Amqp' => 1,
         'Magento_AmqpStore' => 1,
         'Magento_Config' => 1,
