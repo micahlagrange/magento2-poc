@@ -28,6 +28,7 @@ COPY --chown=33:33 lib /var/www/html/lib
 COPY --chown=33:33 pub /var/www/html/pub
 COPY --chown=33:33 setup /var/www/html/setup
 COPY --chown=33:33 composer.* /var/www/html/
+RUN chmod +x bin/magento
 
 EXPOSE 9000
 CMD ["php-fpm"]
